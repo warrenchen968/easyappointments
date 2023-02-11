@@ -26,7 +26,7 @@ $config['debug'] = Config::DEBUG_MODE;
 | path to your installation.
 |
 */
-$config['base_url'] = Config::BASE_URL;
+$config['base_url'] = Config::BASE_URL.'/appointments';
 
 /*
 |--------------------------------------------------------------------------
