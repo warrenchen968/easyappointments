@@ -15,6 +15,8 @@ RUN apt-get update && apt-get upgrade -y && \
 # Enable Apache modules
 RUN a2enmod rewrite headers
 
+RUN apt-get install -y libpng-dev
+
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo_mysql zip gd
 
