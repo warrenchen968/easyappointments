@@ -36,7 +36,7 @@ COPY --from=nodepackages /app /var/www/html/services/appointments/
 # Install PHP dependencies using composer
 WORKDIR /var/www/html/services/appointments/
 RUN npm run build
-#RUN composer install (npm run build is running composer)
+RUN composer install
 
 # Change ownership and permissions
 RUN chown -R www-data:www-data /var/www/html/services/appointments
