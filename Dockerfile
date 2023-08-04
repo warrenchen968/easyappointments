@@ -10,7 +10,7 @@ FROM php:7.4-apache-buster
 
 # Update package lists and upgrade installed packages
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y nano git libzip-dev
+    apt-get install -y nano git libzip-dev gnupg
 
 # Enable Apache modules
 RUN a2enmod rewrite headers
@@ -28,12 +28,22 @@ COPY php.ini /etc/php/7.4/apache2/php.ini
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Add Node.js 14.x repository
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+
+# Install Node.js and npm
+RUN apt-get install -y nodejs
+
+# Print Node.js and npm versions
+RUN node -v
+RUN npm -v
 
 # Stage 3: Copy Node.js packages and PHP app
 COPY --from=nodepackages /app /var/www/html/services/appointments/
 
 # Install PHP dependencies using composer
 WORKDIR /var/www/html/services/appointments/
+RUN npm run build
 RUN composer install
 
 # Change ownership and permissions
