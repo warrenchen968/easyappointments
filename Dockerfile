@@ -13,7 +13,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 
 # Update package lists and upgrade installed packages
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y nano git libzip-dev gnupg unzip nodejs libpng
+    apt-get install -y nano git libzip-dev gnupg unzip nodejs libpng-dev
 
 # Enable Apache modules
 RUN a2enmod rewrite headers
