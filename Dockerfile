@@ -4,8 +4,6 @@ FROM node:16-alpine AS nodepackages
 COPY . /app
 WORKDIR /app
 RUN npm install
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN npm run build
 
 # Stage 2: PHP container
 FROM php:7.4-apache-buster
