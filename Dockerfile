@@ -9,11 +9,11 @@ RUN npm install
 FROM php:7.4-apache-buster
 
 # Add Node.js 14.x repository
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 
 # Update package lists and upgrade installed packages
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y nano git libzip-dev gnupg unzip nodejs
+    apt-get install -y nano git libzip-dev gnupg unzip nodejs libpng
 
 # Enable Apache modules
 RUN a2enmod rewrite headers
